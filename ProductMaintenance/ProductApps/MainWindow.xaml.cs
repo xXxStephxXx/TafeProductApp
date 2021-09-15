@@ -34,16 +34,27 @@ namespace ProductApps
                 decimal deliveryfee = 25;
                 decimal wrapFee = 5;
                 decimal totalCharge;
+                decimal totalPayment;
+                float totalAndWrapFloat;
+                float gst;
+
                 decimal totalAndWrap;
 
                 cProduct = new Product(Convert.ToDecimal(priceTextBox.Text), Convert.ToInt16(quantityTextBox.Text));
                 cProduct.calTotalPayment();
+                totalPayment = cProduct.TotalPayment;
+
                 totalCharge = cProduct.TotalPayment + deliveryfee;
                 totalAndWrap = totalCharge + wrapFee;
+                totalAndWrapFloat = Convert.ToSingle(totalAndWrap);
+                gst = (float)(totalAndWrapFloat * 1.1);
 
                 totalPaymentTextBlock.Text = Convert.ToString(cProduct.TotalPayment);
                 totalChargeTextBlock.Text = Convert.ToString(totalCharge);
                 wrapTextBlock.Text = Convert.ToString(totalAndWrap);
+                gstTextBlock.Text = Convert.ToString(gst);
+                //
+
             }
             catch (FormatException)
             {
